@@ -60,5 +60,5 @@ go.work
 
 # End of https://www.toptal.com/developers/gitignore/api/linux,visualstudi
 
-# /tmp
+/tmp
 # .air.toml
