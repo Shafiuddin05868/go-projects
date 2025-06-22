@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/shafiuddin05868/go-projects/femProject/internal/app"
+	"github.com/shafiuddin05868/go-projects/femProject/internal/routes"
 )
 
 func main() {
@@ -19,10 +20,11 @@ func main() {
 	}
 	app.Logger.Printf("Server is running at port, %d", port)
 
-	http.HandleFunc("/health", HealthCheck)
+	r := routes.SetUpRoutes(app)
 
 	server := &http.Server {
-		Addr: ":3055",
+		Addr: fmt.Sprintf(":%d", port),
+		Handler: r,
 		IdleTimeout: time.Minute,
 		ReadTimeout: 10 * time.Second,
 		WriteTimeout: 30 * time.Second,
@@ -30,9 +32,4 @@ func main() {
 	if err := server.ListenAndServe(); err != nil {
 		app.Logger.Fatal("failed to start server: " + err.Error())
 	}
-}
-
-
-func HealthCheck (w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Status is available\n")
 }
