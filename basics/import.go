@@ -3,12 +3,12 @@ package main
 import (
 	"fmt"
 	"io"
-	"net/http"
+	web "net/http"
 )
 
 func main() {
 	fmt.Println("Hellow, Go standard library")
-	res, err := http.Get("https://jsonplaceholder.typicode.com/todos/1")
+	res, err := web.Get("https://jsonplaceholder.typicode.com/todos/1")
 	if err != nil {
 		fmt.Println("Error", err)
 		return
